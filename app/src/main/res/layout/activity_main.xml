@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <Button
+        android:id="@+id/simple"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentTop="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Simple Example" />
+
+    <Button
+        android:id="@+id/custom_view"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/simple"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Custom View Example" />
+
+    <Button
+        android:id="@+id/custom_helper"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/custom_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Custom Helper Example" />
+
+    <Button
+        android:id="@+id/movement_flag"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/custom_helper"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Movement Flag Example" />
+
+</RelativeLayout>
