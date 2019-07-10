@@ -1,3 +1,4 @@
 rootProject.name='DragSwipeApp'
 include ':app'
 include ':dragswipe'
+include ':dragswipeex'

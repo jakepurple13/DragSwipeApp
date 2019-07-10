@@ -10,6 +10,7 @@
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/dragswipe" />
+            <option value="$PROJECT_DIR$/dragswipeex" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />
