@@ -86,7 +86,9 @@ class CustomViewTouchActivity : AppCompatActivity() {
         }
 
         delete_button.setOnClickListener {
-            adapter.removeItem(0)
+            try {
+                adapter.removeItem(0)
+            } catch(ignored: IndexOutOfBoundsException) {}
         }
     }
 }
