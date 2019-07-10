@@ -12,6 +12,7 @@ import kotlinx.android.synthetic.main.activity_simple.*
 class CustomViewTouchActivity : AppCompatActivity() {
 
     private lateinit var helper: DragSwipeHelper
+    private lateinit var adapter: DSAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,7 +28,7 @@ class CustomViewTouchActivity : AppCompatActivity() {
         simple_rv.layoutManager = LinearLayoutManager(this)
         simple_rv.addItemDecoration(DividerItemDecoration(this, LinearLayoutManager.VERTICAL))
 
-        val adapter = DSAdapter(list, this@CustomViewTouchActivity)
+        adapter = DSAdapter(list, this@CustomViewTouchActivity)
 
         simple_rv.adapter = adapter
 
@@ -78,6 +79,14 @@ class CustomViewTouchActivity : AppCompatActivity() {
                 null
             }
             adapter.notifyDataSetChanged()
+        }
+
+        add_button.setOnClickListener {
+            adapter.addItem("Hello!!!")
+        }
+
+        delete_button.setOnClickListener {
+            adapter.removeItem(0)
         }
     }
 }

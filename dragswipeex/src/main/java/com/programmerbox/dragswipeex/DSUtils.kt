@@ -101,7 +101,7 @@ operator fun <T, VH : RecyclerView.ViewHolder> DragSwipeAdapter<T, VH>.plusAssig
  * removes a list of [element] from [DragSwipeAdapter.list]
  */
 operator fun <T, VH : RecyclerView.ViewHolder> DragSwipeAdapter<T, VH>.minusAssign(element: List<T>) {
-    val intList = kotlin.collections.arrayListOf<Int>()
+    val intList = arrayListOf<Int>()
     for (i in list.withIndex())
         if (i == element)
             intList += i.index

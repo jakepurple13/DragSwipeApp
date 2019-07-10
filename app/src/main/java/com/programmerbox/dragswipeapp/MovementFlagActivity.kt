@@ -13,6 +13,8 @@ import kotlinx.android.synthetic.main.activity_simple.*
 
 class MovementFlagActivity : AppCompatActivity() {
 
+    private lateinit var adapter: DSAdapter
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_simple)
@@ -27,7 +29,7 @@ class MovementFlagActivity : AppCompatActivity() {
         simple_rv.layoutManager = LinearLayoutManager(this)
         simple_rv.addItemDecoration(DividerItemDecoration(this, LinearLayoutManager.VERTICAL))
 
-        val adapter = DSAdapter(list, this@MovementFlagActivity)
+        adapter = DSAdapter(list, this@MovementFlagActivity)
 
         simple_rv.adapter = adapter
 
@@ -58,12 +60,20 @@ class MovementFlagActivity : AppCompatActivity() {
             }
         )
 
-        enable_disable.setOnCheckedChangeListener { compoundButton, b ->
+        enable_disable.setOnCheckedChangeListener { _, b ->
             if (b) {
                 DragSwipeUtils.enableDragSwipe(helper, simple_rv)
             } else {
                 DragSwipeUtils.disableDragSwipe(helper)
             }
+        }
+
+        add_button.setOnClickListener {
+            adapter.addItem("Hello!!!")
+        }
+
+        delete_button.setOnClickListener {
+            adapter.removeItem(0)
         }
 
     }

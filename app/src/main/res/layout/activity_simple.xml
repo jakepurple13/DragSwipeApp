@@ -7,7 +7,7 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/simple_rv"
-        android:layout_above="@id/enable_disable"
+        android:layout_above="@id/add_button"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
@@ -19,6 +19,24 @@
         android:text="Enable/Disable"
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:ignore="HardcodedText" />
+
+    <Button
+        android:id="@+id/add_button"
+        android:text="Add"
+        android:layout_alignParentBottom="true"
+        android:layout_toStartOf="@id/enable_disable"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:ignore="HardcodedText" />
+
+    <Button
+        android:id="@+id/delete_button"
+        android:text="Delete First Index"
+        android:layout_alignParentBottom="true"
+        android:layout_toStartOf="@id/add_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         tools:ignore="HardcodedText" />

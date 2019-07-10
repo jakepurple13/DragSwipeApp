@@ -14,6 +14,8 @@ import kotlinx.android.synthetic.main.activity_simple.*
 
 class CustomHelperActivity : AppCompatActivity() {
 
+    private lateinit var adapter: DSAdapter
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_simple)
@@ -28,7 +30,7 @@ class CustomHelperActivity : AppCompatActivity() {
         simple_rv.layoutManager = LinearLayoutManager(this)
         simple_rv.addItemDecoration(DividerItemDecoration(this, LinearLayoutManager.VERTICAL))
 
-        val adapter = DSAdapter(list, this@CustomHelperActivity)
+        adapter = DSAdapter(list, this@CustomHelperActivity)
 
         simple_rv.adapter = adapter
 
@@ -67,12 +69,20 @@ class CustomHelperActivity : AppCompatActivity() {
             }
         )
 
-        enable_disable.setOnCheckedChangeListener { compoundButton, b ->
+        enable_disable.setOnCheckedChangeListener { _, b ->
             if (b) {
                 DragSwipeUtils.enableDragSwipe(helper, simple_rv)
             } else {
                 DragSwipeUtils.disableDragSwipe(helper)
             }
+        }
+
+        add_button.setOnClickListener {
+            adapter.addItem("Hello!!!")
+        }
+
+        delete_button.setOnClickListener {
+            adapter.removeItem(0)
         }
     }
 }

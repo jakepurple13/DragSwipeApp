@@ -15,6 +15,8 @@ import kotlinx.android.synthetic.main.activity_simple.*
 
 class SimpleActivity : AppCompatActivity() {
 
+    private lateinit var adapter: DSAdapter
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_simple)
@@ -29,7 +31,7 @@ class SimpleActivity : AppCompatActivity() {
         simple_rv.layoutManager = LinearLayoutManager(this)
         simple_rv.addItemDecoration(DividerItemDecoration(this, LinearLayoutManager.VERTICAL))
 
-        val adapter = DSAdapter(list, this@SimpleActivity)
+        adapter = DSAdapter(list, this@SimpleActivity)
 
         simple_rv.adapter = adapter
 
@@ -40,7 +42,15 @@ class SimpleActivity : AppCompatActivity() {
             Direction.START + Direction.END
         )
 
-        enable_disable.visibility = View.GONE
+        enable_disable.visibility = View.INVISIBLE
+
+        add_button.setOnClickListener {
+            adapter.addItem("Hello!!!")
+        }
+
+        delete_button.setOnClickListener {
+            adapter.removeItem(0)
+        }
 
     }
 }

@@ -4,7 +4,7 @@
 
 This library was made so that you can do whatever you want to an adapter while implementing drag-and-drop/swipe capabilities. After seeing all these tutorials that add 20-million things to your code in order to implement drag and drop/swiping, I tried to make this as simple as possible, so that you, the developer, need to call the least number of lines in order to activate drag-and-drop/swipe.
 
-First of all! Add Jitpack! For more information [Go here](https://jitpack.io/#jakepurple13/DragSwipe/V1.0)
+First of all! Add JitPack! For more information [Go here](https://jitpack.io/#jakepurple13/DragSwipeApp/)
 ```gradle
 	allprojects {
 		repositories {
@@ -103,6 +103,39 @@ I have also included some fun extensions! To use them:
 	dependencies {
 		implementation 'com.github.jakepurple13.DragSwipeApp:dragswipeex:v1.4'
 	}
+```
+These add some small fun things.
+```kotlin
+    val adapter = DragSwipeAdapter<String, ViewHolder>()
+    
+    //...
+    
+    adapter.shuffleItems() //to shuffle the adapter with included animation
+    adapter.getFirstItem() //gets the first item in the list
+    adapter.getMiddleItem() //gets the middle item in the list
+    adapter.getLastItem() //gets the last item in the list
+    
+    adapter[5] = "Hello"
+    
+    val location = adapter["Hello"]
+    
+    adapter[5..6] = arrayListOf("Hi", "World")
+    
+    adapter += "Bye"
+    adapter -= "Bye"
+    
+    adapter += arrayListOf("Hi", "World")
+    adapter -= arrayListOf("Hi", "World")
+    
+    val bool = "Hello" in adapter
+    
+    for(i in adapter) {
+        //...
+    }
+    
+    val recyclerManager = RecyclerViewDragSwipeManager(recyclerView, dragSwipeHelper)
+    recyclerManager.dragSwipeEnabled = true
+    recyclerManager.dragSwipeEnabled = false
 ```
 
 # Thank You
