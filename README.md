@@ -84,4 +84,4 @@ override fun getMovementFlags(
 ```
 
 # Thank You
-Huge thanks to [Paul Burke]([https://medium.com/@ipaulpro/drag-and-swipe-with-recyclerview-b9456d2b1aaf](https://medium.com/@ipaulpro/drag-and-swipe-with-recyclerview-b9456d2b1aaf)) for his wonderful and easy to understand tutorial!
+Huge thanks to [Paul Burke]([https://medium.com/@ipaulpro/drag-and-swipe-with-recyclerview-b9456d2b1aaf](https://medium.com/@ipaulpro/drag-and-swipe-with-recyclerview-b9456d2b1aaf) for his wonderful and easy to understand tutorial!
