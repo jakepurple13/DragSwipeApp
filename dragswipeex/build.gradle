@@ -35,7 +35,8 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
     implementation 'androidx.recyclerview:recyclerview:1.0.0'
-    implementation 'com.github.jakepurple13:DragSwipe:V1.0'
+    //implementation 'com.github.jakepurple13.DragSwipeApp:DragSwipe:v1.3'
+    implementation project(':dragswipe')
 }
 
 // build a jar with source files
