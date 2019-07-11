@@ -10,13 +10,10 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.programmerbox.dragswipe.DragSwipeAdapter
-import com.programmerbox.dragswipe.DragSwipeHelper
 import kotlinx.android.synthetic.main.ds_layout.view.*
 
 class DSAdapter(list: ArrayList<String>, var context: Context) :
     DragSwipeAdapter<String, ViewHolder>(list) {
-
-    var helper: DragSwipeHelper? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder(

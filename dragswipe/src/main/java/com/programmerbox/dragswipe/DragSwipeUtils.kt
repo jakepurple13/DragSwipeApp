@@ -212,6 +212,8 @@ fun <T, VH : RecyclerView.ViewHolder> DragSwipeActions<T, VH>.makeMovementFlags(
 abstract class DragSwipeAdapter<T, VH : RecyclerView.ViewHolder>(var list: ArrayList<T>) :
     RecyclerView.Adapter<VH>() {
 
+    var helper: DragSwipeHelper? = null
+
     override fun getItemCount(): Int {
         return list.size
     }
