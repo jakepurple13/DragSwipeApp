@@ -1,8 +1,8 @@
 package com.programmerbox.dragswipeapp
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -26,7 +26,6 @@ class MainActivity : AppCompatActivity() {
         movement_flag.setOnClickListener {
             startActivity(Intent(this@MainActivity, MovementFlagActivity::class.java))
         }
-
     }
 
 }
