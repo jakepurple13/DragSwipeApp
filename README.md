@@ -101,7 +101,7 @@ override fun getMovementFlags(
 I have also included some fun extensions! To use them:
 ```gradle
 	dependencies {
-		implementation 'com.github.jakepurple13.DragSwipeApp:dragswipeex:v1.4'
+		implementation 'com.github.jakepurple13.DragSwipeApp:dragswipeex:v2.0'
 	}
 ```
 These add some small fun things.
