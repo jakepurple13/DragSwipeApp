@@ -156,7 +156,7 @@ fun <T, VH : RecyclerView.ViewHolder> DragSwipeActions<T, VH>.makeMovementFlags(
  * [swapItems]
  *
  */
-abstract class DragSwipeAdapter<T, VH : RecyclerView.ViewHolder>(var list: ArrayList<T>) : RecyclerView.Adapter<VH>() {
+abstract class DragSwipeAdapter<T, VH : RecyclerView.ViewHolder>(var list: MutableList<T>) : RecyclerView.Adapter<VH>() {
 
     var helper: DragSwipeHelper? = null
 
@@ -165,7 +165,7 @@ abstract class DragSwipeAdapter<T, VH : RecyclerView.ViewHolder>(var list: Array
     /**
      * sets the list with new data and then notifies that the data changed
      */
-    open fun setListNotify(genericList: ArrayList<T>) {
+    open fun setListNotify(genericList: MutableList<T>) {
         list = genericList
         notifyDataSetChanged()
     }
