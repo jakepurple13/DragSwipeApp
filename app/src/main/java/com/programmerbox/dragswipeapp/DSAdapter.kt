@@ -25,6 +25,10 @@ class DSAdapter(list: ArrayList<String>, var context: Context) :
         )
     }
 
+    override fun String.onBind(holder: ViewHolder, position: Int) {
+
+    }
+
     @SuppressLint("ClickableViewAccessibility", "SetTextI18n")
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.button.setOnClickListener {
@@ -34,7 +38,7 @@ class DSAdapter(list: ArrayList<String>, var context: Context) :
         holder.button.text = "Click me!"
 
         holder.text.text =
-            "$position with ${list[position]}: Random Text to show how awesome this library is!"
+            "$position with ${dataList[position]}: Random Text to show how awesome this library is!"
 
         holder.button.setOnTouchListener(null)
         holder.text.setOnTouchListener(null)
@@ -43,7 +47,7 @@ class DSAdapter(list: ArrayList<String>, var context: Context) :
             holder.button.text = "Drag with Me!\nAnd still click!"
 
             holder.text.text =
-                "$position with ${list[position]}: Random Text to show how awesome this library is!\nSwipe with me!"
+                "$position with ${dataList[position]}: Random Text to show how awesome this library is!\nSwipe with me!"
 
             holder.button.setOnTouchListener { _, _ ->
                 helper!!.startDrag(holder)

@@ -10,9 +10,9 @@ import kotlin.random.Random
  * Shuffles items in the adapter and notifies
  */
 fun <T, VH : RecyclerView.ViewHolder> DragSwipeAdapter<T, VH>.shuffleItems() {
-    for (i in list.indices) {
-        val num = Random.nextInt(0, list.size - 1)
-        Collections.swap(list, i, num)
+    for (i in dataList.indices) {
+        val num = Random.nextInt(0, dataList.size - 1)
+        Collections.swap(dataList, i, num)
         notifyItemMoved(i, num)
         notifyItemChanged(i)
         notifyItemChanged(num)
@@ -20,19 +20,19 @@ fun <T, VH : RecyclerView.ViewHolder> DragSwipeAdapter<T, VH>.shuffleItems() {
 }
 
 /**
- * gets the first item in [DragSwipeAdapter.list]
+ * gets the first item in [DragSwipeAdapter.dataList]
  */
-fun <T, VH : RecyclerView.ViewHolder> DragSwipeAdapter<T, VH>.getFirstItem(): T? = list.firstOrNull()
+fun <T, VH : RecyclerView.ViewHolder> DragSwipeAdapter<T, VH>.getFirstItem(): T? = dataList.firstOrNull()
 
 /**
- * gets the middle item in [DragSwipeAdapter.list]
+ * gets the middle item in [DragSwipeAdapter.dataList]
  */
-fun <T, VH : RecyclerView.ViewHolder> DragSwipeAdapter<T, VH>.getMiddleItem(): T? = list.getOrNull(itemCount / 2)
+fun <T, VH : RecyclerView.ViewHolder> DragSwipeAdapter<T, VH>.getMiddleItem(): T? = dataList.getOrNull(itemCount / 2)
 
 /**
- * gets the last item in [DragSwipeAdapter.list]
+ * gets the last item in [DragSwipeAdapter.dataList]
  */
-fun <T, VH : RecyclerView.ViewHolder> DragSwipeAdapter<T, VH>.getLastItem(): T? = list.lastOrNull()
+fun <T, VH : RecyclerView.ViewHolder> DragSwipeAdapter<T, VH>.getLastItem(): T? = dataList.lastOrNull()
 
 /**
  * @see ItemTouchHelper.Callback.makeFlag
@@ -44,49 +44,49 @@ fun <T, VH : RecyclerView.ViewHolder> DragSwipeActions<T, VH>.makeFlag(
 ): Int = ItemTouchHelper.Callback.makeFlag(state, direction)
 
 /**
- * gets the [num] item from [DragSwipeAdapter.list]
+ * gets the [num] item from [DragSwipeAdapter.dataList]
  */
-operator fun <T, VH : RecyclerView.ViewHolder> DragSwipeAdapter<T, VH>.get(num: Int): T = list[num]
+operator fun <T, VH : RecyclerView.ViewHolder> DragSwipeAdapter<T, VH>.get(num: Int): T = dataList[num]
 
 /**
- * Gets the location of [element] in [DragSwipeAdapter.list]
+ * Gets the location of [element] in [DragSwipeAdapter.dataList]
  */
-operator fun <T, VH : RecyclerView.ViewHolder> DragSwipeAdapter<T, VH>.get(element: T): Int = list.indexOf(element)
+operator fun <T, VH : RecyclerView.ViewHolder> DragSwipeAdapter<T, VH>.get(element: T): Int = dataList.indexOf(element)
 
 /**
- * sets the [num] location of [DragSwipeAdapter.list] to [element]
+ * sets the [num] location of [DragSwipeAdapter.dataList] to [element]
  */
 operator fun <T, VH : RecyclerView.ViewHolder> DragSwipeAdapter<T, VH>.set(num: Int, element: T) {
-    list[num] = element
+    dataList[num] = element
     notifyItemChanged(num)
 }
 
 /**
- * sets the [num] locations of [DragSwipeAdapter.list] to [element]
+ * sets the [num] locations of [DragSwipeAdapter.dataList] to [element]
  */
 operator fun <T, VH : RecyclerView.ViewHolder> DragSwipeAdapter<T, VH>.set(num: IntRange, element: List<T>) {
     for ((i, j) in num.withIndex()) {
-        list[j] = element[i]
+        dataList[j] = element[i]
     }
     notifyItemRangeChanged(num.first, num.count())
 }
 
 /**
- * adds a list of [elements] to [DragSwipeAdapter.list]
+ * adds a list of [elements] to [DragSwipeAdapter.dataList]
  */
 operator fun <T, VH : RecyclerView.ViewHolder> DragSwipeAdapter<T, VH>.plusAssign(elements: List<T>) = addItems(elements)
 
 /**
- * adds an [element] to [DragSwipeAdapter.list]
+ * adds an [element] to [DragSwipeAdapter.dataList]
  */
 operator fun <T, VH : RecyclerView.ViewHolder> DragSwipeAdapter<T, VH>.plusAssign(element: T) = addItem(element)
 
 /**
- * removes a list of [element] from [DragSwipeAdapter.list]
+ * removes a list of [element] from [DragSwipeAdapter.dataList]
  */
 operator fun <T, VH : RecyclerView.ViewHolder> DragSwipeAdapter<T, VH>.minusAssign(element: List<T>) {
     val intList = arrayListOf<Int>()
-    for (i in list.withIndex())
+    for (i in dataList.withIndex())
         if (i == element)
             intList += i.index
     for (i in intList)
@@ -94,21 +94,21 @@ operator fun <T, VH : RecyclerView.ViewHolder> DragSwipeAdapter<T, VH>.minusAssi
 }
 
 /**
- * removes [element] from [DragSwipeAdapter.list]
+ * removes [element] from [DragSwipeAdapter.dataList]
  */
 operator fun <T, VH : RecyclerView.ViewHolder> DragSwipeAdapter<T, VH>.minusAssign(element: T) {
-    removeItem(list.indexOf(element))
+    removeItem(dataList.indexOf(element))
 }
 
 /**
- * checks if [element] is in [DragSwipeAdapter.list]
+ * checks if [element] is in [DragSwipeAdapter.dataList]
  */
-operator fun <T, VH : RecyclerView.ViewHolder> DragSwipeAdapter<T, VH>.contains(element: T): Boolean = element in list
+operator fun <T, VH : RecyclerView.ViewHolder> DragSwipeAdapter<T, VH>.contains(element: T): Boolean = element in dataList
 
 /**
- * allows iteration of [DragSwipeAdapter.list]
+ * allows iteration of [DragSwipeAdapter.dataList]
  */
-operator fun <T, VH : RecyclerView.ViewHolder> DragSwipeAdapter<T, VH>.iterator() = list.iterator()
+operator fun <T, VH : RecyclerView.ViewHolder> DragSwipeAdapter<T, VH>.iterator() = dataList.iterator()
 
 /**
  * @see [DragSwipeUtils.enableDragSwipe]

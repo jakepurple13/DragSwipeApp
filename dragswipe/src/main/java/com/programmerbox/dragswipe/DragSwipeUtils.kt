@@ -89,8 +89,12 @@ interface DragSwipeActions<T, VH : RecyclerView.ViewHolder> {
      * @param viewHolder the previous position
      * @param target the new position
      */
-    fun onMove(recyclerView: RecyclerView, viewHolder: RecyclerView.ViewHolder, target: RecyclerView.ViewHolder, dragSwipeAdapter: DragSwipeAdapter<T, VH>) =
-        dragSwipeAdapter.swapItems(viewHolder.adapterPosition, target.adapterPosition)
+    fun onMove(
+        recyclerView: RecyclerView,
+        viewHolder: RecyclerView.ViewHolder,
+        target: RecyclerView.ViewHolder,
+        dragSwipeAdapter: DragSwipeAdapter<T, VH>
+    ) = dragSwipeAdapter.swapItems(viewHolder.adapterPosition, target.adapterPosition)
 
     /**
      * when the element is swiped
@@ -156,35 +160,35 @@ fun <T, VH : RecyclerView.ViewHolder> DragSwipeActions<T, VH>.makeMovementFlags(
  * [swapItems]
  *
  */
-abstract class DragSwipeAdapter<T, VH : RecyclerView.ViewHolder>(var list: MutableList<T>) : RecyclerView.Adapter<VH>() {
-
+abstract class DragSwipeAdapter<T, VH : RecyclerView.ViewHolder>(var dataList: MutableList<T>) : RecyclerView.Adapter<VH>() {
     var helper: DragSwipeHelper? = null
-
-    override fun getItemCount(): Int = list.size
+    override fun getItemCount(): Int = dataList.size
+    override fun onBindViewHolder(holder: VH, position: Int) = dataList[position].onBind(holder, position)
+    abstract fun T.onBind(holder: VH, position: Int)
 
     /**
      * sets the list with new data and then notifies that the data changed
      */
     open fun setListNotify(genericList: MutableList<T>) {
-        list = genericList
+        dataList = genericList
         notifyDataSetChanged()
     }
 
     /**
      * adds an item to position and then notifies
-     * position default is size of [list]
+     * position default is size of [dataList]
      */
-    open fun addItem(item: T, position: Int = list.size) {
-        list.add(position, item)
+    open fun addItem(item: T, position: Int = dataList.size) {
+        dataList.add(position, item)
         notifyItemInserted(position)
     }
 
     /**
      * adds multiple item to position and then notifies
-     * position default is size of [list]
+     * position default is size of [dataList]
      */
-    open fun addItems(items: Collection<T>, position: Int = list.size) {
-        list.addAll(position, items)
+    open fun addItems(items: Collection<T>, position: Int = dataList.size) {
+        dataList.addAll(position, items)
         notifyItemRangeInserted(position, items.size)
     }
 
@@ -192,7 +196,7 @@ abstract class DragSwipeAdapter<T, VH : RecyclerView.ViewHolder>(var list: Mutab
      * removes an item at position then notifies
      */
     open fun removeItem(position: Int): T {
-        val item = list.removeAt(position)
+        val item = dataList.removeAt(position)
         notifyItemRemoved(position)
         return item
     }
@@ -203,11 +207,11 @@ abstract class DragSwipeAdapter<T, VH : RecyclerView.ViewHolder>(var list: Mutab
     fun swapItems(fromPosition: Int, toPosition: Int) {
         if (fromPosition < toPosition) {
             for (i in fromPosition until toPosition) {
-                list[i] = list.set(i + 1, list[i])
+                dataList[i] = dataList.set(i + 1, dataList[i])
             }
         } else {
             for (i in fromPosition..toPosition + 1) {
-                list[i] = list.set(i - 1, list[i])
+                dataList[i] = dataList.set(i - 1, dataList[i])
             }
         }
         notifyItemMoved(fromPosition, toPosition)

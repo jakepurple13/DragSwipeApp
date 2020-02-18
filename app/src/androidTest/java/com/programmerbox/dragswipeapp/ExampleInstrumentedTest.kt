@@ -1,12 +1,13 @@
 package com.programmerbox.dragswipeapp
 
-import androidx.test.platform.app.InstrumentationRegistry
+import androidx.recyclerview.widget.RecyclerView
 import androidx.test.ext.junit.runners.AndroidJUnit4
-
+import androidx.test.platform.app.InstrumentationRegistry
+import com.programmerbox.dragswipe.DragSwipeBuilder
+import com.programmerbox.dragswipe.buildDragSwipe
+import org.junit.Assert.assertEquals
 import org.junit.Test
 import org.junit.runner.RunWith
-
-import org.junit.Assert.*
 
 /**
  * Instrumented test, which will execute on an Android device.
@@ -20,5 +21,21 @@ class ExampleInstrumentedTest {
         // Context of the app under test.
         val appContext = InstrumentationRegistry.getInstrumentation().targetContext
         assertEquals("com.programmerbox.dragswipeapp", appContext.packageName)
+
+        val f = DragSwipeBuilder<Int, ViewHolder> {
+            dragSwipeActions {
+                onMove { recyclerView, viewHolder, viewHolder2, dragSwipeAdapter -> }
+                onSwipe { viewHolder, direction, dragSwipeAdapter -> }
+                isItemViewSwipeEnabled = true
+                isLongPressDragEnabled = true
+                getMovementFlags { recyclerView, viewHolder -> null }
+            }
+            dragDirections()
+            swipeDirections()
+        }
+
+        RecyclerView(appContext).buildDragSwipe<Int, ViewHolder> { }
+
+        DSAdapter(arrayListOf("asdf"), appContext).buildDragSwipe { }
     }
 }
