@@ -163,8 +163,8 @@ fun <T, VH : RecyclerView.ViewHolder> DragSwipeActions<T, VH>.makeMovementFlags(
 abstract class DragSwipeAdapter<T, VH : RecyclerView.ViewHolder>(var dataList: MutableList<T>) : RecyclerView.Adapter<VH>() {
     var helper: DragSwipeHelper? = null
     override fun getItemCount(): Int = dataList.size
-    override fun onBindViewHolder(holder: VH, position: Int) = dataList[position].onBind(holder, position)
-    abstract fun T.onBind(holder: VH, position: Int)
+    override fun onBindViewHolder(holder: VH, position: Int) = holder.onBind(dataList[position], position)
+    abstract fun VH.onBind(item: T, position: Int)
 
     /**
      * sets the list with new data and then notifies that the data changed
