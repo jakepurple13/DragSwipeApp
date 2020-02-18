@@ -33,7 +33,6 @@ class ExampleInstrumentedTest {
             dragDirections()
             swipeDirections()
         }
-
         RecyclerView(appContext).buildDragSwipe<Int, ViewHolder> { }
         DSAdapter(arrayListOf("asdf"), appContext).buildDragSwipe { }
     }
